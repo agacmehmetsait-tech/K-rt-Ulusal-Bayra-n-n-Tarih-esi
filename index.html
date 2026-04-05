@@ -29,12 +29,14 @@ body {
   overflow-x: hidden;
 }
 
+/* ── READING BAR ── */
 #rbar {
   position: fixed; top: 0; left: 0; height: 3px; width: 0%;
   background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
   z-index: 999;
 }
 
+/* ── HERO ── */
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column;
@@ -102,6 +104,7 @@ body {
   to   { opacity:1; transform: none; }
 }
 
+/* ── SECTION TITLE ── */
 .sec-head {
   text-align: center;
   padding: 5rem 2rem 0;
@@ -117,6 +120,7 @@ body {
   font-weight: 700; margin-top: .5rem; color: var(--text);
 }
 
+/* ── HORIZONTAL TIMELINE WRAPPER ── */
 .tl-outer {
   padding: 4rem 0 5rem;
   overflow-x: auto;
@@ -125,29 +129,32 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--rule) transparent;
-  overscroll-behavior-x: contain;
 }
 .tl-outer::-webkit-scrollbar { height: 4px; }
 .tl-outer::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
 .tl-outer.grabbed { cursor: grabbing; }
 
+/* Inner strip — wide enough for all cards */
 .tl-inner {
   display: flex;
   align-items: flex-start;
   position: relative;
+  /* left & right padding so first/last cards don't hug edge */
   padding: 0 5vw;
   min-width: max-content;
 }
 
+/* Horizontal rail — sits at a fixed top offset */
 .tl-inner::before {
   content: '';
   position: absolute;
-  top: 44px;
+  top: 44px; /* aligns with dot centre */
   left: 0; right: 0;
   height: 1.5px;
   background: linear-gradient(to right, transparent, var(--rule) 4%, var(--rule) 96%, transparent);
 }
 
+/* ── CARD ── */
 .card {
   flex: 0 0 320px;
   padding: 0 2rem 0;
@@ -158,6 +165,7 @@ body {
 }
 .card.visible { opacity: 1; transform: none; }
 
+/* Dot */
 .card::before {
   content: '';
   position: absolute;
@@ -174,21 +182,24 @@ body {
   background: var(--gold); border-color: var(--gold);
 }
 
+/* Year */
 .card-year {
   font-family: 'Cinzel', serif;
   font-size: 1.35rem; font-weight: 600;
   color: var(--text);
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.8rem; /* space between year and stripe */
   padding-top: .4rem;
 }
 
+/* Colour stripe */
 .stripe {
   height: 3px; border-radius: 2px;
   background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
   margin-bottom: 1.5rem;
 }
 
+/* Body text — original words, no title */
 .card-body {
   font-size: .97rem;
   line-height: 1.95;
@@ -212,6 +223,7 @@ body {
   font-style: normal; font-size: .82rem; opacity: .7;
 }
 
+/* ── SYMBOLS SECTION ── */
 .sym-sec {
   background: linear-gradient(150deg, #18110A 0%, #241804 60%, #18110A 100%);
   padding: 6rem 2rem;
@@ -264,6 +276,7 @@ body {
 }
 .sym-desc { font-size: .9rem; line-height: 1.7; color: rgba(250,247,242,.6); }
 
+/* ── FOOTER ── */
 footer {
   text-align: center; padding: 3rem 2rem;
   background: var(--bg);
@@ -274,6 +287,7 @@ footer {
 .fs-r{background:var(--red);} .fs-w{background:#CCC;} .fs-g{background:var(--green);}
 footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
 
+/* ── TTS ── */
 .tts-wrap {
   position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 100;
   display: flex; align-items: center; gap: .7rem;
@@ -296,6 +310,7 @@ footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
 .tts-btn:hover { transform: scale(1.08); }
 .tts-btn.on { background: var(--red); }
 
+/* ── RESPONSIVE: stack on mobile ── */
 @media (max-width: 600px) {
   .tl-outer { overflow-x: auto; }
   .card { flex: 0 0 82vw; }
@@ -306,6 +321,7 @@ footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
 
 <div id="rbar"></div>
 
+<!-- HERO -->
 <section class="hero">
   <div class="flag-wrap">
     <svg viewBox="0 0 330 220" xmlns="http://www.w3.org/2000/svg">
@@ -349,56 +365,84 @@ footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
   </div>
 </section>
 
+<!-- SECTION TITLE -->
 <div class="sec-head">
   <span>Tarihsel Süreç</span>
   <h2>Bayrağın Kilometre Taşları</h2>
 </div>
 
+<!-- HORIZONTAL TIMELINE -->
 <div class="tl-outer" id="tlOuter">
   <div class="tl-inner" id="tlInner">
+
+    <!-- 1920 -->
     <div class="card">
       <div class="card-year">1920</div>
       <div class="stripe"></div>
       <div class="card-body">
-        <p>Kürt Teşkilat-ı İçtimaiye Cemiyeti, 1920 yılında İstanbul'da bugünkü Kürt ulusal bayrağını ilk kez düzenlemiştir.</p>
-        <div class="quote">"Teşkilat-ı İctimaiye Cemiyeti uzunlama olarak üç renkten müteşekkil yukarıda kırmızı ortada beyaz üzerinde güneş ve altta yeşil renkli Kürt bayrağının renk ve şeklini tespit ederek milli bayrak olduğunu ilan etti."</div>
+        <p>Dünya savaşı sürecinde Kürt Teali Cemiyeti'nden ayrılan ve muhtariyeti reddeden Kürt Teşkilat-ı İçtimaiye Cemiyeti, 1920 yılında İstanbul'da bugünkü Kürt ulusal bayrağını ilk kez düzenlemiştir. Nitekim Kadri Cemil Paşa da Doza Kurdistan adlı kitabında bunu açıkça ifade eder:</p>
+        <div class="quote">
+          "Teşkilat-ı İctimaiye Cemiyeti uzunlama olarak üç renkten müteşekkil yukarıda kırmızı ortada beyaz üzerinde güneş ve altta yeşil renkli Kürt bayrağının renk ve şeklini tespit ederek milli bayrak olduğunu ilan etti."
+        </div>
       </div>
     </div>
 
+    <!-- 1921 -->
     <div class="card">
       <div class="card-year">1921</div>
       <div class="stripe"></div>
       <div class="card-body">
-        <p>Koçgiri Başkaldırısı sırasında Kürdistan Bayrağı ilk kez göndere çekilmiştir.</p>
+        <p>Koçgiri Başkaldırısı sırasında Kürdistan Bayrağı ilk kez göndere çekilmiştir. Dr. Nuri Dersimi de bu hususu Kürdistan Tarihinde Dêrsim adlı eserinde belirtmektedir.</p>
       </div>
     </div>
 
+    <!-- 1928 -->
     <div class="card">
       <div class="card-year">1928</div>
       <div class="stripe"></div>
       <div class="card-body">
-        <p>Hoybun Cemiyeti, bayrağı resmen kabul etmiş ve Ağrı İsyanı sırasında İhsan Nuri Paşa tarafından Ağrı Dağı'na dikilmiştir.</p>
+        <p>1927 yılında kurulan Hoybun Cemiyeti, 1920'de tasarlanan bayrağı resmen kabul etmiş ve Ağrı İsyanı (1927–1930) sırasında İhsan Nuri Paşa tarafından Ağrı Dağı'na dikilmiştir.</p>
+        <p>Taşnaksütyun arşivinden çıkan 21 Ocak 1928 tarihli Memduh Selim Bey mektubu, Kürt bayrağının ilk kez 1920'de İstanbul'da tanzim edildiğini açık biçimde ortaya koymaktadır. Mektupta, bu bayrağın o dönemde Kürt çevrelerince kabul edildiği, büyük devletlerin İstanbul'daki temsilciliklerine sunulduğu, Avrupa ve Amerika'ya gönderildiği ve böylece resmiyet kazandığı belirtilmektedir. Bu nedenle Memduh Selim Bey, bayrak konusundaki tartışmaların son bulmasını ve Ağrı'daki direniş komitesinin bu bayrağı tartışmasız kabul etmesini istemektedir.</p>
+        <p>Ayrıca Vakit Gazetesi <em>İran Harekete Geçti</em> manşetiyle 1930 yılında bayrağı yayınlamıştır.</p>
       </div>
     </div>
 
+    <!-- 1946 -->
     <div class="card">
       <div class="card-year">1946</div>
       <div class="stripe"></div>
       <div class="card-body">
-        <p>Mehabad Kürt Cumhuriyeti'nin resmi bayrağı oldu. Cumhurbaşkanı Qazi Muhammed, bayrağı Molla Mustafa Barzani'ye teslim ederek emanet etti.</p>
+        <p>Bayrağın tarihindeki en büyük dönüm noktası, Doğu Kürdistan'da (Rojhelat) kurulan Mehabad Kürt Cumhuriyeti'dir. 17 Aralık 1945'te Mehabad belediye binasına çekilen bayrak, 22 Ocak 1946'da ilan edilen Cumhuriyet'in resmi bayrağı olmuştur.</p>
+        <div class="quote">
+          Mehabad'ın yıkılışı sürecinde, Cumhurbaşkanı Qazi Muhammed, bayrağı katlayıp öperek Molla Mustafa Barzani'ye teslim etmiş ve "Bu bayrak size emanettir, onu yere düşürmeyin" demiştir.
+        </div>
+        <p>Bu an, bayrağın bir parçadan diğerine aktarılan kutsal bir mirasa dönüşmesini sağlamıştır.</p>
       </div>
     </div>
 
+    <!-- 1992 -->
+    <div class="card">
+      <div class="card-year">1992</div>
+      <div class="stripe"></div>
+      <div class="card-body">
+        <p>1992 yılında kurulan Güney Kürdistan Parlamentosu, <em>"Ala Rengîn"</em>i Kürdistan'ın resmi bayrağı olarak kabul etmiştir.</p>
+      </div>
+    </div>
+
+    <!-- 1999 -->
     <div class="card">
       <div class="card-year">1999</div>
       <div class="stripe"></div>
       <div class="card-body">
-        <p>Kürdistan Bölge Parlamentosu, "Kürdistan Bayrak Yasası" ile standart tasarımı resmi olarak onayladı.</p>
+        <p>11 Kasım 1999 tarihinde Kürdistan Bölge Parlamentosu, hazırlanan bu standart tasarımı <em>"Kürdistan Bayrak Yasası"</em> ile resmi olarak onayladı. Bu yasa ile birlikte:</p>
+        <p>Bayrağın üzerinde herhangi bir değişiklik yapılması yasaklandı. Kamu kurumlarında ve diplomatik temsilciliklerde kullanılacak olan "standart form" bu tasarım oldu. 1946 Mehabad mirası, modern devlet standartlarıyla (ISO ve uluslararası protokoller) uyumlu hale getirilmiş oldu.</p>
       </div>
     </div>
+
   </div>
 </div>
 
+<!-- SYMBOLS -->
 <section class="sym-sec">
   <div class="sym-inner">
     <p class="sym-tag" data-anim>Sembolik Anlamlar</p>
@@ -407,7 +451,7 @@ footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
       <div class="sym-card" data-anim>
         <div class="sym-icon ic-red">🩸</div>
         <div class="sym-name">Kırmızı</div>
-        <div class="sym-desc">Özgürlük mücadelesinde akıttılan kanı simgeler.</div>
+        <div class="sym-desc">Kürt halkının özgürlük mücadelesinde akıttığı kanı ve devrimi simgeler.</div>
       </div>
       <div class="sym-card" data-anim>
         <div class="sym-icon ic-white">☁️</div>
@@ -417,17 +461,18 @@ footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
       <div class="sym-card" data-anim>
         <div class="sym-icon ic-green">🌿</div>
         <div class="sym-name">Yeşil</div>
-        <div class="sym-desc">Doğayı ve bereketi simgeler.</div>
+        <div class="sym-desc">Kürdistan'ın doğasını, bereketli topraklarını ve yaşamı simgeler.</div>
       </div>
       <div class="sym-card" data-anim>
         <div class="sym-icon ic-sun">☀️</div>
-        <div class="sym-name">Sarı Güneş</div>
-        <div class="sym-desc">Aydınlık ve bilgeliği, 21 ışın ise Newroz'u simgeler.</div>
+        <div class="sym-name">Sarı Güneş — Roj</div>
+        <div class="sym-desc">Antik dönemlerden beri Kürt kültüründe aydınlığı ve bilgeliği temsil eder. 21 ışın, kutsal sayıyı ve Newroz'u (21 Mart) simgeler.</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="foot-flag">
     <div class="fs fs-r"></div>
@@ -437,17 +482,20 @@ footer p { font-size: .83rem; color: var(--soft); letter-spacing: .04em; }
   <p>Kürdistan Bayrağının Tarihçesi &nbsp;·&nbsp; 1920 – 1999</p>
 </footer>
 
+<!-- TTS -->
 <div class="tts-wrap">
   <span class="tts-tip">Sesli oku</span>
   <button class="tts-btn" id="ttsBtn" aria-label="Sesli oku">🔊</button>
 </div>
 
 <script>
+/* Reading bar */
 window.addEventListener('scroll', () => {
   const t = document.documentElement.scrollHeight - window.innerHeight;
   document.getElementById('rbar').style.width = (window.scrollY / t * 100) + '%';
 });
 
+/* Reveal cards as they scroll into horizontal view */
 const outer = document.getElementById('tlOuter');
 const cards = document.querySelectorAll('.card');
 
@@ -464,6 +512,7 @@ outer.addEventListener('scroll', revealCards);
 window.addEventListener('scroll', revealCards);
 setTimeout(revealCards, 200);
 
+/* Drag to scroll */
 let isDown = false, startX, scrollLeft;
 outer.addEventListener('mousedown', e => {
   isDown = true; outer.classList.add('grabbed');
@@ -479,6 +528,7 @@ outer.addEventListener('mousemove', e => {
   outer.scrollLeft = scrollLeft - (x - startX) * 1.2;
 });
 
+/* Symbols */
 const anims = document.querySelectorAll('[data-anim]');
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
@@ -487,7 +537,32 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 anims.forEach(el => obs.observe(el));
 
-const TTS = `Kürdistan Bayrağının Tarihçesi. 1920'den 1999'a kadar olan süreç. Renklerin anlamı: Kırmızı özgürlük, beyaz barış, yeşil doğa ve sarı güneş bilgeliği temsil eder.`;
+/* TTS */
+const TTS = `Kürdistan Bayrağının Tarihçesi.
+
+Bin dokuz yüz yirmi.
+Dünya savaşı sürecinde Kürt Teali Cemiyeti'nden ayrılan ve muhtariyeti reddeden Kürt Teşkilat-ı İçtimaiye Cemiyeti, bin dokuz yüz yirmi yılında İstanbul'da bugünkü Kürt ulusal bayrağını ilk kez düzenlemiştir. Nitekim Kadri Cemil Paşa da Doza Kurdistan adlı kitabında bunu açıkça ifade eder: Teşkilat-ı İctimaiye Cemiyeti uzunlama olarak üç renkten müteşekkil yukarıda kırmızı ortada beyaz üzerinde güneş ve altta yeşil renkli Kürt bayrağının renk ve şeklini tespit ederek milli bayrak olduğunu ilan etti.
+
+Bin dokuz yüz yirmi bir.
+Koçgiri Başkaldırısı sırasında Kürdistan Bayrağı ilk kez göndere çekilmiştir. Dr. Nuri Dersimi de bu hususu Kürdistan Tarihinde Dêrsim adlı eserinde belirtmektedir.
+
+Bin dokuz yüz yirmi sekiz.
+Bin dokuz yüz yirmi yedi yılında kurulan Hoybun Cemiyeti, bin dokuz yüz yirmide tasarlanan bayrağı resmen kabul etmiş ve Ağrı İsyanı sırasında İhsan Nuri Paşa tarafından Ağrı Dağı'na dikilmiştir. Taşnaksütyun arşivinden çıkan yirmi bir Ocak bin dokuz yüz yirmi sekiz tarihli Memduh Selim Bey mektubu, Kürt bayrağının ilk kez bin dokuz yüz yirmide İstanbul'da tanzim edildiğini açık biçimde ortaya koymaktadır.
+
+Bin dokuz yüz kırk altı.
+Bayrağın tarihindeki en büyük dönüm noktası, Mehabad Kürt Cumhuriyeti'dir. On yedi Aralık bin dokuz yüz kırk beşte Mehabad belediye binasına çekilen bayrak, yirmi iki Ocak bin dokuz yüz kırk altıda ilan edilen Cumhuriyet'in resmi bayrağı olmuştur. Mehabad'ın yıkılışı sürecinde, Cumhurbaşkanı Qazi Muhammed, bayrağı katlayıp öperek Molla Mustafa Barzani'ye teslim etmiş ve dedi ki: Bu bayrak size emanettir, onu yere düşürmeyin.
+
+Bin dokuz yüz doksan iki.
+Bin dokuz yüz doksan iki yılında kurulan Güney Kürdistan Parlamentosu, Ala Rengîni Kürdistan'ın resmi bayrağı olarak kabul etmiştir.
+
+Bin dokuz yüz doksan dokuz.
+On bir Kasım bin dokuz yüz doksan dokuz tarihinde Kürdistan Bölge Parlamentosu, hazırlanan bu standart tasarımı Kürdistan Bayrak Yasası ile resmi olarak onayladı. Bu yasa ile bayrağın üzerinde herhangi bir değişiklik yapılması yasaklandı; kamu kurumlarında kullanılacak standart form bu tasarım oldu; bin dokuz yüz kırk altı Mehabad mirası, uluslararası protokollerle uyumlu hale getirilmiş oldu.
+
+Bayrağın sembolik anlamları.
+Kırmızı: Kürt halkının özgürlük mücadelesinde akıttığı kanı ve devrimi simgeler.
+Beyaz: Barışı, dürüstlüğü ve saflığı temsil eder.
+Yeşil: Kürdistan'ın doğasını, bereketli topraklarını ve yaşamı simgeler.
+Sarı Güneş, Roj: Antik dönemlerden beri Kürt kültüründe aydınlığı ve bilgeliği temsil eder. Yirmi bir ışın, kutsal sayıyı ve Newroz'u, yani yirmi bir Martı simgeler.`;
 
 let speaking = false;
 const btn = document.getElementById('ttsBtn');
@@ -498,11 +573,14 @@ btn.addEventListener('click', () => {
     speaking = false; btn.classList.remove('on'); btn.textContent = '🔊'; return;
   }
   const u = new SpeechSynthesisUtterance(TTS);
-  u.lang = 'tr-TR'; u.rate = 0.9;
+  u.lang = 'tr-TR'; u.rate = 0.88;
+  const trv = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('tr'));
+  if (trv) u.voice = trv;
   u.onstart = () => { speaking = true; btn.classList.add('on'); btn.textContent = '⏸'; };
   u.onend = u.onerror = () => { speaking = false; btn.classList.remove('on'); btn.textContent = '🔊'; };
   window.speechSynthesis.speak(u);
 });
+if (window.speechSynthesis) window.speechSynthesis.getVoices();
 </script>
 </body>
 </html>
